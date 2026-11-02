@@ -15,6 +15,7 @@ jobs:
         steps:
             - name: Show OS
               run: |
+                shell: bash
                 echo "This job is running on a Windows server."
                 echo "The OS is $RUNNER_OS"
     macOS-echo:
