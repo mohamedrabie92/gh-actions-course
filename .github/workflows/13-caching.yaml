@@ -10,10 +10,8 @@ on:
         description: "Node version"
         type: choice 
         options:
-          - "18.x"
-          - "20.x"
-          - "21.x"
           - "24.x"
+          - "26.x"
         default: "20.x"
 jobs:
 
@@ -103,7 +101,7 @@ jobs:
               with:
                 path: 13-caching/react-app/node_modules 
                 key: ${{ needs.install-deps.outputs.deps-cache-key }}
-                
+
             - name: Testing
               run: |
                    npm run test
