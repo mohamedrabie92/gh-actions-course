@@ -7,7 +7,7 @@ jobs:
     name: ${{ matrix.OS-types }}-${{ matrix.node-version }}
     runs-on: ${{ matrix.OS-types }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         Node-version: [24.x, 26.x]
         OS-types:
@@ -15,9 +15,8 @@ jobs:
           - windows-latest
         include:
             - os: ubuntu-latest
+              node-version: 28.x
               tag: experimental
-            - os: ubuntu-latest
-              node-version: 26.x
 
     steps:
       - name: Setup node
@@ -25,9 +24,9 @@ jobs:
         with:
           node-version: ${{ matrix.Node-version }}
       - name: Fail if experimental
-        if: ${{ matrix.tag == 'experimental' }}
+        if: matrix.tag == 'experimental'
         run: |
-            exit(1)
+            exit 1
       - name: Perform some tests
         run: |
            echo "Running tests on OS ${{ matrix.OS-types }} and NodeJS ${{ matrix.Node-version }}"
