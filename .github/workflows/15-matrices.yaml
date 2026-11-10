@@ -53,6 +53,7 @@ jobs:
                 - color: red
                   shape: triangle
                 - opacity: 50
+                
             exclude:
                 - opacity: 75
     
