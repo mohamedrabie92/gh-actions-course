@@ -7,7 +7,7 @@ jobs:
     name: ${{ matrix.OS-types }}-${{ matrix.node-version }}
     runs-on: ${{ matrix.OS-types }}
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         Node-version: [24.x, 26.x]
         OS-types:
