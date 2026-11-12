@@ -9,7 +9,7 @@ inputs:
   working-dir:
     description: "The working directory of the application"
     required: false
-    default: "."
+    default: .
 
 runs:
   using: composite
