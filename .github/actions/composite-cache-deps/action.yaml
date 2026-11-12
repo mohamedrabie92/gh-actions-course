@@ -10,7 +10,10 @@ inputs:
     description: "The working directory of the application"
     required: false
     default: .
-
+  target-env:
+    description: '"dev" or "prod". Controls whether dev dependencies are installed'
+    required: false
+    default: dev
 runs:
   using: composite
   steps:
@@ -28,8 +31,9 @@ runs:
 
 
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true' 
-      run: npm ci
+      if: steps.cache.outputs.cache-hit != 'true' && inputs.target-env == 'dev'
+      run: ${{ inputs.target-env == 'dev' && 'npm ci' || 'npm ci --omit=dev'}} 
       shell: bash
       working-directory: ${{ inputs.working-dir }}
-      
+    
+  
