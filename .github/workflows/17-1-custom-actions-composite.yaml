@@ -28,7 +28,8 @@ jobs:
               with: 
                 node-version: "24.x"
                 working-directory: ${{env.working-directory}}
-                
+                target-env: ${{ inputs.target-env }}
+
             - name: Test
               run: |
                   npm run test
